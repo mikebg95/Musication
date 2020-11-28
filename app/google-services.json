@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "195087472668",
+    "firebase_url": "https://musication-92cd9.firebaseio.com",
+    "project_id": "musication-92cd9",
+    "storage_bucket": "musication-92cd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195087472668:android:e5bf5e5f6050f64c27a7d9",
+        "android_client_info": {
+          "package_name": "com.example.musication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195087472668-rt4luoicoldpl768gvsb5tqjur017532.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.musication",
+            "certificate_hash": "1407971e84c2c3aaf6e45b0d90c57a52f791c3f4"
+          }
+        },
+        {
+          "client_id": "195087472668-flt59e1b65cge7k8m4cnfp7lc4g2uicf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFY_k2tfAhiYz4UYS786HZCzOfitqPwR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195087472668-flt59e1b65cge7k8m4cnfp7lc4g2uicf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
