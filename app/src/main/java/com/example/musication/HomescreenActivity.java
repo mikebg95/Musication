@@ -8,8 +8,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class HomescreenActivity extends AppCompatActivity {
 
+    FirebaseAuth fAuth;
     ImageView notificationBtn, chatBtn, profileBtn, calendarBtn, bandsBtn, musicBtn, friendsBtn, settingsBtn, signoutBtn;
 
     @Override
@@ -32,7 +35,7 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 notificationBtn.setImageResource(R.drawable.notification_clicked);
-                if (event.getAction() == MotionEvent.ACTION_BUTTON_RELEASE) {
+                if (!isInside(notificationBtn, event)) {
                     notificationBtn.setImageResource(R.drawable.notification);
                 }
                 return false;
@@ -42,6 +45,7 @@ public class HomescreenActivity extends AppCompatActivity {
         notificationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                notificationBtn.setImageResource(R.drawable.notification);
                 startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
             }
         });
@@ -50,6 +54,9 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 chatBtn.setImageResource(R.drawable.chat_clicked);
+                if (!isInside(chatBtn, event)) {
+                    chatBtn.setImageResource(R.drawable.chat);
+                }
                 return false;
             }
         });
@@ -66,6 +73,9 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 profileBtn.setImageResource(R.drawable.profile_clicked);
+                if (!isInside(profileBtn, event)) {
+                    profileBtn.setImageResource(R.drawable.profile);
+                }
                 return false;
             }
         });
@@ -85,6 +95,9 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 calendarBtn.setImageResource(R.drawable.calendar_clicked);
+                if (!isInside(calendarBtn, event)) {
+                    calendarBtn.setImageResource(R.drawable.calendar);
+                }
                 return false;
             }
         });
@@ -103,6 +116,9 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 bandsBtn.setImageResource(R.drawable.bands_clicked);
+                if (!isInside(bandsBtn, event)) {
+                    bandsBtn.setImageResource(R.drawable.bands);
+                }
                 return false;
             }
         });
@@ -121,6 +137,9 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 musicBtn.setImageResource(R.drawable.music_clicked);
+                if (!isInside(musicBtn, event)) {
+                    musicBtn.setImageResource(R.drawable.music);
+                }
                 return false;
             }
         });
@@ -139,6 +158,9 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 friendsBtn.setImageResource(R.drawable.friends_clicked);
+                if (!isInside(friendsBtn, event)) {
+                    friendsBtn.setImageResource(R.drawable.friends);
+                }
                 return false;
             }
         });
@@ -158,6 +180,9 @@ public class HomescreenActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 settingsBtn.setImageResource(R.drawable.settings_clicked);
+                if (!isInside(settingsBtn, event)) {
+                    settingsBtn.setImageResource(R.drawable.settings);
+                }
                 return false;
             }
         });
@@ -171,13 +196,33 @@ public class HomescreenActivity extends AppCompatActivity {
             }
         });
 
+        signoutBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                signoutBtn.setImageResource(R.drawable.signout_btn_clicked);
+                if (!isInside(signoutBtn, event)) {
+                    signoutBtn.setImageResource(R.drawable.signout_btn);
+                }
+                return false;
+            }
+        });
+
 
 
         signoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                signoutBtn.setImageResource(R.drawable.signout_btn);
+                fAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
+
+
     }
+    private boolean isInside(View v, MotionEvent e) {
+        return !(e.getX() < 0 || e.getY() < 0 || e.getX() > v.getMeasuredWidth() || e.getY() > v.getMeasuredHeight());
+    }
+
+
 }

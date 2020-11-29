@@ -53,30 +53,31 @@
         app:srcCompat="@drawable/insta_icon" />
 
     <EditText
-        android:id="@+id/username_entry"
+        android:id="@+id/email_entry"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/username_entry"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/email_entry"
         android:ems="10"
         android:fontFamily="@font/century_gothic"
         android:gravity="top"
-        android:hint="Username"
+        android:hint="Email address"
         android:inputType="textPersonName"
         android:paddingLeft="38dp"
+        android:drawablePadding="12dp"
         android:textColor="#707070"
         android:textColorHint="#707070"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/password_entry"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fb_login" />
 
     <EditText
         android:id="@+id/password_entry"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/password_entry"
         android:ems="10"
         android:fontFamily="@font/century_gothic"
@@ -84,13 +85,14 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="38dp"
+        android:drawablePadding="12dp"
         android:textColor="#707070"
         android:textColorHint="#707070"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/login_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_error_login" />
 
     <ImageView
         android:id="@+id/login_btn"
@@ -124,5 +126,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/register_link" />
+
+    <TextView
+        android:id="@+id/email_error_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="31dp"
+        android:fontFamily="@font/century_gothic"
+        android:textColor="#7B1C1C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_entry" />
+
+    <TextView
+        android:id="@+id/password_error_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="31dp"
+        android:fontFamily="@font/century_gothic"
+        android:textColor="#7B1C1C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_entry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
