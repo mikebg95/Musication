@@ -1,11 +1,14 @@
 package com.example.musication;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     ImageView googleLogin, fbLogin, instaLogin, loginBtn, forgotPassword, registerLink;
     EditText emailEntry, passwordEntry;
     TextView emailErrorLogin, passwordErrorLogin;
+
+    boolean clicked, emailExited, passwordExited;
 
     @Override
     public void onStart() {
@@ -81,21 +86,82 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        clicked = false;
 
-        emailEntry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        ///////// TEST //////////
+        emailEntry.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                String email = emailEntry.getText().toString().trim();
-                if (!hasFocus) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (clicked || emailExited) {
+                    String email = emailEntry.getText().toString().trim();
                     if (TextUtils.isEmpty(email)) {
                         emailEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                         emailEntry.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
                         emailErrorLogin.setText("Email address is required");
-                    }
-                    else {
+                    } else {
                         emailEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                         emailEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
                         emailErrorLogin.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        passwordEntry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (clicked || passwordExited) {
+                    String password = passwordEntry.getText().toString().trim();
+                    if (TextUtils.isEmpty(password)) {
+                        passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        passwordEntry.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                        passwordErrorLogin.setText("Password is required");
+                    } else {
+                        passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                        passwordErrorLogin.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        emailEntry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!clicked) {
+                    String email = emailEntry.getText().toString().trim();
+                    if (!hasFocus) {
+                        emailExited = true;
+
+                        if (TextUtils.isEmpty(email)) {
+                            emailEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            emailEntry.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                            emailErrorLogin.setText("Email address is required");
+                        } else {
+                            emailEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            emailEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                            emailErrorLogin.setText("");
+                        }
                     }
                 }
             }
@@ -104,21 +170,25 @@ public class LoginActivity extends AppCompatActivity {
         passwordEntry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String password = passwordEntry.getText().toString().trim();
-                if (!hasFocus) {
-                    if (TextUtils.isEmpty(password)) {
-                        passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        passwordEntry.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
-                        passwordErrorLogin.setText("Password is required");
-                    }
-                    else {
-                        passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
-                        passwordErrorLogin.setText("");
+                if (!clicked) {
+                    String password = passwordEntry.getText().toString().trim();
+                    if (!hasFocus) {
+                        passwordExited = true;
+
+                        if (TextUtils.isEmpty(password)) {
+                            passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            passwordEntry.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                            passwordErrorLogin.setText("Password is required");
+                        } else {
+                            passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            passwordEntry.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                            passwordErrorLogin.setText("");
+                        }
                     }
                 }
             }
         });
+
 
         registerLink.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -156,6 +226,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clicked = true;
+
                 loginBtn.setImageResource(R.drawable.login_btn);
 
                 boolean ready = true;

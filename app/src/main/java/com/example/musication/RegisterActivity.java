@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -28,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     TextView firstNameErrorRegister, lastNameErrorRegister, emailErrorRegister, passwordErrorRegister, password2ErrorRegister;
 
     Drawable error;
+
+    boolean clicked, firstNameExited, lastNameExited, emailExited, passwordExited, password2Exited;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,26 +61,173 @@ public class RegisterActivity extends AppCompatActivity {
 
         error = getResources().getDrawable(R.drawable.error_circle);
 
+        clicked = false;
+
         // automatically goes to homepage screen cause previous user is always logged in
 //        if (fAuth.getCurrentUser() != null) {
 //            startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
 //            finish();
 //        }
 
-        firstNameRegister.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        firstNameRegister.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                String firstName = firstNameRegister.getText().toString().trim();
-                if (!hasFocus) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (clicked || firstNameExited) {
+                    String firstName = firstNameRegister.getText().toString().trim();
                     if (TextUtils.isEmpty(firstName)) {
                         firstNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                         firstNameRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
-                        firstNameErrorRegister.setText("Username is required");
-                    }
-                    else {
+                        firstNameErrorRegister.setText("First name is required");
+                    } else {
                         firstNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                         firstNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
                         firstNameErrorRegister.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        lastNameRegister.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (clicked || lastNameExited) {
+                    String lastName = lastNameRegister.getText().toString().trim();
+                    if (TextUtils.isEmpty(lastName)) {
+                        lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        lastNameRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                        lastNameErrorRegister.setText("Last name is required");
+                    } else {
+                        lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                        lastNameErrorRegister.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        emailRegister.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (clicked || emailExited) {
+                    String email = emailRegister.getText().toString().trim();
+                    if (TextUtils.isEmpty(email)) {
+                        emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        emailRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                        emailErrorRegister.setText("Email address is required");
+                    } else {
+                        emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                        emailErrorRegister.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        passwordRegister.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (clicked || passwordExited) {
+                    String password = passwordRegister.getText().toString().trim();
+                    if (TextUtils.isEmpty(password)) {
+                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        passwordRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                        passwordErrorRegister.setText("Password is required");
+                    } else {
+                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                        passwordErrorRegister.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        password2Register.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (clicked || password2Exited) {
+                    String password2 = password2Register.getText().toString().trim();
+                    if (TextUtils.isEmpty(password2)) {
+                        password2Register.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        password2Register.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                        password2ErrorRegister.setText("Password confirmation is required");
+                    } else {
+                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                        password2ErrorRegister.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+        firstNameRegister.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!clicked) {
+                    String firstName = firstNameRegister.getText().toString().trim();
+                    if (!hasFocus) {
+                        firstNameExited = true;
+
+                        if (TextUtils.isEmpty(firstName)) {
+                            firstNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            firstNameRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                            firstNameErrorRegister.setText("Username is required");
+                        } else {
+                            firstNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            firstNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                            firstNameErrorRegister.setText("");
+                        }
                     }
                 }
             }
@@ -85,17 +236,20 @@ public class RegisterActivity extends AppCompatActivity {
         lastNameRegister.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String lastName = lastNameRegister.getText().toString().trim();
-                if (!hasFocus) {
-                    if (TextUtils.isEmpty(lastName)) {
-                        lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        lastNameRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
-                        lastNameErrorRegister.setText("Last name is required");
-                    }
-                    else {
-                        lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
-                        lastNameErrorRegister.setText("");
+                if (!clicked) {
+                    String lastName = lastNameRegister.getText().toString().trim();
+                    if (!hasFocus) {
+                        lastNameExited = true;
+
+                        if (TextUtils.isEmpty(lastName)) {
+                            lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            lastNameRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                            lastNameErrorRegister.setText("Last name is required");
+                        } else {
+                            lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            lastNameRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                            lastNameErrorRegister.setText("");
+                        }
                     }
                 }
             }
@@ -104,17 +258,27 @@ public class RegisterActivity extends AppCompatActivity {
         emailRegister.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String email = emailRegister.getText().toString().trim();
-                if (!hasFocus) {
-                    if (TextUtils.isEmpty(email)) {
-                        emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        emailRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
-                        emailErrorRegister.setText("Email address is required");
-                    }
-                    else {
-                        emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
-                        emailErrorRegister.setText("");
+                if (!clicked) {
+                    String email = emailRegister.getText().toString().trim();
+                    if (!hasFocus) {
+                        emailExited = true;
+
+                        if (TextUtils.isEmpty(email)) {
+                            emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            emailRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                            emailErrorRegister.setText("Email address is required");
+                        } else {
+                            if (isValidEmail(email)) {
+                                emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                                emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                                emailErrorRegister.setText("");
+                            }
+                            else {
+                                emailRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                                emailRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                                emailErrorRegister.setText("Email address is not valid");
+                            }
+                        }
                     }
                 }
             }
@@ -123,17 +287,20 @@ public class RegisterActivity extends AppCompatActivity {
         passwordRegister.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String password = passwordRegister.getText().toString().trim();
-                if (!hasFocus) {
-                    if (TextUtils.isEmpty(password)) {
-                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        passwordRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
-                        passwordErrorRegister.setText("Password is required");
-                    }
-                    else {
-                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
-                        passwordErrorRegister.setText("");
+                if (!clicked) {
+                    String password = passwordRegister.getText().toString().trim();
+                    if (!hasFocus) {
+                        passwordExited = true;
+
+                        if (TextUtils.isEmpty(password)) {
+                            passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            passwordRegister.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                            passwordErrorRegister.setText("Password is required");
+                        } else {
+                            passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            passwordRegister.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                            passwordErrorRegister.setText("");
+                        }
                     }
                 }
             }
@@ -142,17 +309,20 @@ public class RegisterActivity extends AppCompatActivity {
         password2Register.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String password2 = password2Register.getText().toString().trim();
-                if (!hasFocus) {
-                    if (TextUtils.isEmpty(password2)) {
-                        password2Register.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        password2Register.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
-                        password2ErrorRegister.setText("Password confirmation is required");
-                    }
-                    else {
-                        password2Register.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        password2Register.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
-                        password2Register.setText("");
+                if (!clicked) {
+                    String password2 = password2Register.getText().toString().trim();
+                    if (!hasFocus) {
+                        password2Exited = true;
+
+                        if (TextUtils.isEmpty(password2)) {
+                            password2Register.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            password2Register.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.error_circle, 0);
+                            password2ErrorRegister.setText("Password confirmation is required");
+                        } else {
+                            password2Register.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                            password2Register.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.check_circle, 0);
+                            password2ErrorRegister.setText("");
+                        }
                     }
                 }
             }
@@ -172,9 +342,11 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clicked = true;
                 registerBtn.setImageResource(R.drawable.signup_btn);
 
                 boolean ready = true;
+
                 String firstName = firstNameRegister.getText().toString().trim();
                 String lastName = lastNameRegister.getText().toString().trim();
                 String email = emailRegister.getText().toString().trim();
@@ -260,5 +432,22 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean isInside(View v, MotionEvent e) {
         return !(e.getX() < 0 || e.getY() < 0 || e.getX() > v.getMeasuredWidth() || e.getY() > v.getMeasuredHeight());
+    }
+
+    private boolean isValidEmail(String email) {
+        String Expn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        if (email.matches(Expn) && email.length() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
