@@ -7,13 +7,13 @@ Logging in without account <br>
 <br><br>
 
 Registering account <br>
-![](musication_register_gif.gif)
+<img src="musication_register_gif.gif" width="250">
 <br><br>
 
 Logging in after registering <br>
-![](login_success_gif.gif)
+<img src="login_success.gif" width="250">
 <br><br>
 
 Homepage <br>
-![](musication_home_gif.gif)
+<img src="musication_home_gif.gif" width="250">
 
