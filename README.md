@@ -11,7 +11,7 @@ Registering account <br>
 <br><br>
 
 Logging in after registering <br>
-<img src="login_success.gif" width="250">
+<img src="login_success_gif.gif" width="250">
 <br><br>
 
 Homepage <br>
