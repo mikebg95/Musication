@@ -1,14 +1,18 @@
 # Musication
 A social media app for musicians
 
-Logging in without account
+Logging in without account <br>
 ![](login_fail_gif.gif)
+<br><br>
 
-Registering account
+Registering account <br>
 ![](musication_register_gif.gif)
+<br><br>
 
-Logging in after registering
+Logging in after registering <br>
 ![](login_success_gif.gif)
+<br><br>
 
-Homepage
+Homepage <br>
 ![](musication_home_gif.gif)
+
