@@ -2,7 +2,7 @@
 A social media app for musicians
 
 Logging in without account <br>
-![](login_fail_gif.gif)
+![](login_fail_gif.gif | width=100)
 <br><br>
 
 Registering account <br>
