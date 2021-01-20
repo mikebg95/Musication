@@ -1,9 +1,10 @@
 # Musication
 A social media app for musicians
 
+
 Logging in without account <br>
-![](login_fail_gif.gif){:class="img-responsive"}
-![](login_fail_gif.gif){:class="img-responsive"}
+<img src="login_fail_gif.gif" width="100">
+![](login_fail_gif.gif)
 <br><br>
 
 Registering account <br>
